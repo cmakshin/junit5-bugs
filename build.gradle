@@ -68,17 +68,8 @@ subprojects {
 			}
 		}
 
-		if (!rootProject.hasProperty('noDummyTest')) {
-			task dummyTest(type: Test) {
-				enabled = false
-			}
-
-			junitPlatformTest {
-				dependsOn.add(dummyTest)
-			}
-		}
-
 		junitPlatformTest {
+			dependsOn.add(sourceSets.test.runtimeClasspath)
 			inputs.property('moduleName', moduleName)
 			doFirst {
 				def newJvmArgs = jvmArgs
