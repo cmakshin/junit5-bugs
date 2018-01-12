@@ -14,3 +14,12 @@ junitPlatform {
 		]
 	}
 }
+
+task dummyJavaExec(type: JavaExec) {
+	enabled = false
+	classpath = project(':projectC').sourceSets.main.runtimeClasspath;
+}
+
+build {
+	dependsOn.add(dummyJavaExec)
+}
